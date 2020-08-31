@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./_blocks/head', { siteTitle: `${post.title} | ${themeConfig.siteName}` }) %>
+    <meta name="description" content="<%- post.description %>" />
+    <meta name="keywords" content="<%- post.tags.map(tag => tag.name).join(',') %>" />
+    <% if (site.customConfig.renderKaTeX) { %>
+      <link href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet">
+      <script src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+    <% } %>
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <%- include('./_blocks/sidebar') %>
+
+      <div class="main-container">
+        <div class="content-container animate__animated animate__fadeInUp">
+          <div class="post-detail">
+            <h2 class="post-title"><%= post.title %></h2>
+            <div class="post-date"><%= post.dateFormat %>&emsp;&emsp;<%= post.stats.words%> 字 &emsp;阅读时间 <%= post.stats.minutes %> 分钟</div>
+            <% if (post.feature) { %>
+              <div class="feature-container" style="background-image: url('<%= post.feature %>')">
+              </div>
+            <% } %>
+            <div class="post-content" v-pre>
+              <%- post.content %>
+            </div>
+            <% if (post.tags.length > 0) { %>
+              <div class="tag-container">
+                <% post.tags.forEach(function(tag, index) { %>
+                  <a href="<%= tag.link %>" class="tag">
+                    <%= tag.name %>
+                  </a>
+                <% }); %>
+              </div>
+            <% } %>
+            <% if (post.nextPost && !post.hideInList) { %>
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="<%= post.nextPost.link %>">
+                  <h3 class="post-title">
+                    <%= post.nextPost.title %>
+                  </h3>
+                </a>
+              </div>
+            <% } %>
+
+            <% if (typeof commentSetting !== 'undefined' && commentSetting.showComment) { %>
+              <% if (commentSetting.commentPlatform === 'gitalk') { %>
+                <div id="gitalk-container" class="animate__animated animate__fadeIn"></div>
+              <% } %>
+
+              <% if (commentSetting.commentPlatform === 'disqus') { %>
+                <div id="disqus_thread" class="animate__animated animate__fadeIn"></div>
+              <% } %>
+            <% } %>
+
+          </div>
+        </div>
+      </div>
+
+      <% if(!post.hideInList) { %>
+        <div class="post-toc animate__animated animate__fadeInUp">
+          <span>目录</span>
+          <div class="divider"></div>
+          <%- post.toc %>
+        </div>
+      <% } %>
+
+    </div>
+
+    <%- include('./_blocks/scripts') %>
+  </body>
+</html>
