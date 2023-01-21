@@ -12,7 +12,7 @@
   <body>
     <div id="app" class="main">
 
-      <%- include('./_blocks/sidebar') %>
+      <%- include('./_blocks/header') %>
 
       <div class="main-container">
         <div class="content-container animate__animated animate__fadeInUp">
@@ -48,25 +48,22 @@
 
             <% if (typeof commentSetting !== 'undefined' && commentSetting.showComment) { %>
               <% if (commentSetting.commentPlatform === 'gitalk') { %>
-                <div id="gitalk-container" class="animate__animated animate__fadeIn"></div>
+                <div id="gitalk-container" class="animate__animated animate__fadeIn comment-container"></div>
               <% } %>
 
               <% if (commentSetting.commentPlatform === 'disqus') { %>
-                <div id="disqus_thread" class="animate__animated animate__fadeIn"></div>
+                <div id="disqus_thread" class="animate__animated animate__fadeIn comment-container"></div>
               <% } %>
             <% } %>
 
           </div>
+          
+          <%- include('./_blocks/toc') %>
+
         </div>
       </div>
 
-      <% if(!post.hideInList) { %>
-        <div class="post-toc animate__animated animate__fadeInUp">
-          <span>目录</span>
-          <div class="divider"></div>
-          <%- post.toc %>
-        </div>
-      <% } %>
+      <%- include('./_blocks/footer') %>
 
     </div>
 

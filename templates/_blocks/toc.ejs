@@ -1,0 +1,89 @@
+<% let showToc = post.toc.length > 0 && !post.hideInList %>
+<% if(showToc) { %>
+<div class="post-toc animate__animated animate__fadeInUp">
+    <%- post.toc %>
+</div>
+<% } %>
+
+<script>
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let activeClass = 'active-toc';
+  let tocContent;
+  
+  function addActiveClass(index) {
+    if (index >= 0 && index < lList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < lList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+  
+  function getElementTop (el) {
+    let actualTop = el.offsetTop
+    let current = el.offsetParent
+    while (current !== null) {
+      actualTop += current.offsetTop
+      current = current.offsetParent
+    }
+    return actualTop
+  }
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop;
+    let eps = window.innerHeight;
+
+    let current = 0, closestOffset = 0x3f3f3f3f, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      let offset = Math.abs(getElementTop(hList[i]) - scrollTop);
+      if (offset > eps) {
+        continue;
+      }
+      if (offset < closestOffset) {
+        current = i;
+        closestOffset = offset;
+        hasFind = true;
+      }
+    }
+    if(!hasFind) {
+      return;
+    }
+
+    removeActiveClass(lastIndex)
+    addActiveClass(current);
+    lastIndex = current;
+  });
+
+  window.addEventListener('load', function () {
+    tocContent = document.querySelector('.markdownIt-TOC');
+    if (!tocContent) return;
+
+    postBody = document.querySelector('.post-content');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+
+    let con = tocContent.children[0].children[0];
+    tocContent.innerHTML = con.innerHTML;
+    lList = document.querySelectorAll('.post-toc li');
+
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+</script>

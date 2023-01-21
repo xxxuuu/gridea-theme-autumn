@@ -1,23 +1,40 @@
 {
   "name": "autumn",
-  "version": "1.2.0",
-  "author": "XUQING",
+  "version": "2.0.0",
+  "author": "xxxuuu",
   "customConfig": [
     {
-      "name": "sidebarWidth",
-      "label": "菜单栏宽度",
+      "name": "bannerHeight",
+      "label": "Banner高度",
       "group": "布局",
-      "value": "320px",
+      "value": "430px",
       "type": "input",
-      "note": "可填像素类型（如：320px）或百分比类型（如：38.2%）"
+      "note": "可填像素类型（如：430px）或百分比类型（如：38.2%）"
     },
     {
-      "name": "featureBorderRadius",
-      "label": "封面图圆角",
-      "group": "布局",
-      "value": "3px",
+      "name": "bannerBackgroundColor",
+      "label": "Banner背景色",
+      "group": "样式",
+      "value": "#7c8280",
       "type": "input",
-      "note": "像素类型（如：3px）"
+      "card": "color",
+      "note": "可填十六进制（如：#7c8280）或 RGB 颜色（如：rgb(124,130,128)）"
+    },
+    {
+      "name": "bannerBackgroundImg",
+      "label": "Banner背景图",
+      "group": "样式",
+      "value": "https://source.unsplash.com/random",
+      "type": "input",
+      "note": "填写URL，如https://example.com/bg.png"
+    },
+    {
+      "name": "footerBackgroundImg",
+      "label": "Footer背景图",
+      "group": "样式",
+      "value": "/media/images/footer-bg.webp",
+      "type": "input",
+      "note": "填写URL，如https://example.com/bg.png"
     },
     {
       "name": "menuColor",
@@ -32,7 +49,7 @@
       "name": "contentBgColor",
       "label": "内容区背景色",
       "group": "颜色",
-      "value": "#f8f9fa",
+      "value": "#ffffff",
       "type": "input",
       "card": "color",
       "note": "颜色字符串:（如：#EEEEEE、rgba(255, 255, 255, 0.9)）"
@@ -41,14 +58,14 @@
       "name": "renderKaTeX",
       "label": "是否渲染 KaTeX 公式",
       "group": "渲染",
-      "value": false,
+      "value": true,
       "type": "switch"
     },
     {
       "name": "renderCode",
       "label": "是否渲染代码高亮",
       "group": "渲染",
-      "value": false,
+      "value": true,
       "type": "switch"
     },
     {

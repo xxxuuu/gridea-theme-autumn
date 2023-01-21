@@ -1,14 +1,38 @@
 const generateOverride = (params = {}) => {
   let result = ''
 
-  // 侧边栏宽度 - sidebarWidth
-  if (params.sidebarWidth && params.sidebarWidth !== '320px') {
+  // Banner高度 - bannerHeight
+  if (params.bannerHeight && params.bannerHeight !== '430px') {
     result += `
-      .sidebar {
-        width: ${params.sidebarWidth};
+      .header {
+        height: ${params.bannerHeight};
       }
-      .main-container {
-        margin-left: ${params.sidebarWidth};
+    `
+  }
+
+  // Banner背景色 - bannerBackgroundColor
+  if (params.bannerBackgroundColor && params.bannerBackgroundColor !== '#7c8280') {
+    result += `
+      .header {
+        background-color: ${params.bannerBackgroundColor};
+      }
+    `
+  }
+
+  // Banner背景图 - bannerBackgroundImg
+  if (params.bannerBackgroundImg && params.bannerBackgroundImg !== 'https://source.unsplash.com/random') {
+    result += `
+      .header .banner {
+        background-image: url(${params.bannerBackgroundImg});
+      }
+    `
+  }
+
+  // Footer背景图 - footerBackgroundImg
+  if (params.footerBackgroundImg && params.footerBackgroundImg !== '/media/images/footer-bg.webp') {
+    result += `
+      .footer:before {
+        background: url(${params.footerBackgroundImg}) no-repeat center;
       }
     `
   }
