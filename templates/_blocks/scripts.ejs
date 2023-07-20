@@ -16,6 +16,22 @@ var app = new Vue({
   </script>
 <% } %>
 
+<script type="module">
+  const images = document.querySelectorAll('.post-content img');
+
+  console.log(images)
+  for (let i = 0; i < images.length; i++) {
+    const img = images[i];
+
+    const link = document.createElement('a');
+    link.href = img.src;
+	link.setAttribute("data-fancybox", "gallery");
+
+    img.parentNode.insertBefore(link, img);
+    link.appendChild(img);
+  }
+</script>
+
 <% if (typeof commentSetting !== 'undefined' && commentSetting.showComment) { %>
 
   <% if (commentSetting.commentPlatform === 'gitalk') { %>
