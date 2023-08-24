@@ -12,11 +12,13 @@ var app = new Vue({
 <% if (site.customConfig.renderCode) { %>
   <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
   <script>
-    hljs.highlightAll()
+	window.onload = () => {
+		hljs.highlightAll()
+	}
   </script>
 <% } %>
 
-<script type="module">
+<script>
   const images = document.querySelectorAll('.post-content img');
 
   console.log(images)
