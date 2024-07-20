@@ -29,6 +29,13 @@
             <div class="post-content" v-pre>
               <%- post.content %>
             </div>
+
+            <div class="not-by-ai">
+              <img src="/media/images/not-by-ai-cn.svg"/>
+              <img src="/media/images/not-by-ai-jp.svg"/>
+              <img src="/media/images/not-by-ai-en.svg"/>
+            </div>
+
             <% if (post.tags.length > 0) { %>
               <div class="tag-container">
                 <% post.tags.forEach(function(tag, index) { %>
