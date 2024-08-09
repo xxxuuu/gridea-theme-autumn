@@ -65,7 +65,11 @@
                 <div id="disqus_thread" class="animate__animated animate__fadeIn comment-container"></div>
               <% } %>
             <% } %>
-
+            <% if (site.customConfig.giscus !== "") { %>
+              <div id="giscus" class="giscus">
+                <%- site.customConfig.giscus %>
+              </div>
+            <% } %>
           </div>
 
           <%- include('./_blocks/toc') %>

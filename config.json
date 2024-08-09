@@ -69,6 +69,14 @@
       "type": "switch"
     },
     {
+      "name": "giscus",
+      "label": "Giscus 评论系统",
+      "group": "评论",
+      "value": "",
+      "type": "input",
+      "note": "giscus 的 <script> 标签内容，见 https://giscus.app/zh-CN"
+    },
+    {
       "name": "github",
       "label": "Github",
       "group": "社交",
